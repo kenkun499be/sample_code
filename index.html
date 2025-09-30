@@ -1,27 +1,65 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <title>Prism.js サンプル</title>
+<meta charset="UTF-8">
+<title>Prism.js 黒背景サンプル</title>
 
-  <!-- PrismのCSS（テーマ） -->
-  <link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism.css" rel="stylesheet" />
+<!-- PrismのCSS -->
+<link href="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/themes/prism-okaidia.css" rel="stylesheet" />
+
+<style>
+body {
+    background-color: #000; /* ページ背景を黒 */
+    color: #fff;
+    font-family: monospace;
+    padding: 20px;
+}
+
+pre {
+    border: 1px solid #222; /* 枠の色を黒っぽく */
+    border-radius: 6px;
+    padding: 10px;
+    position: relative;
+}
+
+button.copy-btn {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 2px 6px;
+    font-size: 12px;
+    cursor: pointer;
+}
+</style>
 </head>
 <body>
 
-  <h1>Prism.js シンタックスハイライトサンプル</h1>
+<h1>コードブロックサンプル</h1>
 
-  <pre><code class="language-javascript">
+<pre>
+<button class="copy-btn">Copy</button>
+<code class="language-javascript">
 function greet(name) {
     console.log("Hello, " + name + "!");
 }
 greet("Ken");
-  </code></pre>
+</code>
+</pre>
 
-  <!-- Prism本体のJS -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.js"></script>
-  <!-- JavaScript用のプラグイン -->
-  <script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/prism.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/prismjs@1.30.0/components/prism-javascript.min.js"></script>
+
+<script>
+// コピー機能
+document.querySelectorAll('.copy-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+        const code = btn.nextElementSibling.innerText;
+        navigator.clipboard.writeText(code);
+        btn.innerText = 'Copied!';
+        setTimeout(() => btn.innerText = 'Copy', 1000);
+    });
+});
+</script>
 
 </body>
 </html>
